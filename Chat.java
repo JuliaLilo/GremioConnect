@@ -4,8 +4,12 @@ public class Chat {
 
     public Chat(long idchat){
     super();
-    this.Chat = 0;
+    this.Chat = idChat;
 }
+    public Chat(){
+    super();
+    this.Chat = 0;
+    }
 
     public long getIdChat() {
         return idChat;
