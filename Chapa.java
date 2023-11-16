@@ -1,25 +1,33 @@
 package model;
 
 public class Chapa {
-    private int id_chapa;
-    private String senha_chapa;
+    private long idChapa;
+    private String senhaChapa;
     private String lema;
-    private String nome_chapa;
+    private String nomeChapa;
 
-    public int getId_chapa (){
-        return id_chapa;
+    public Chapa (long idChapa, String senhaChapa, String lema, String nomeChapa) {
+        super();
+        this.idChapa = 0;
+        this.senha_chapa = " ";
+        this.lema = " ";
+        this.nomeChapa = " ";
     }
 
-    public void setId_chapa (int id_chapa){
-        this.id_chapa = id_chapa;
+    public long getIdChapa (){
+        return idChapa;
     }
 
-    public String getSenha_chapa (){
-        return senha_chapa;
+    public void setIdChapa (long idChapa){
+        this.idChapa = idChapa;
     }
 
-    public void setSenha_chapa (String senha_chapa){
-        this.senha_chapa = senha_chapa;
+    public String getSenhaChapa (){
+        return senhaChapa;
+    }
+
+    public void setSenhaChapa (String senhaChapa){
+        this.senha_chapa = senhaChapa;
     }
 
     public String getLema (){
@@ -30,12 +38,12 @@ public class Chapa {
         this.lema = lema;
     }
 
-    public String getNome_chapa (){
-        return nome_chapa;
+    public String getNomeChapa (){
+        return nomeChapa;
     }
 
-    public void setNome_chapa (String nome_chapa){
-        this.nome_chapa = nome_chapa;
+    public void setNomeChapa (String nomeChapa){
+        this.nomeChapa = nomeChapa;
     }
   
     
