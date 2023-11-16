@@ -1,17 +1,32 @@
 package model;
 
 public class Publicacao {
-    private int id_publicacao;
+    private long idPublicacao;
     private String imagem;
     private String video;
     private String documento;
     private String comentario;
 
-    public int getId_publicacao (){
-        return id_publicacao;
+    public Publicacao (){
+        super();
+        this.idPublicacao = 0;
+        this.imagem = " ";
+        this.video = " ";
+        this.documento = " ";
+        this.comentario = " ";
     }
-    public void setId_publicacao (int id_publicacao){
-        this.id_publicacao = id_publicacao;
+
+    public Publicacao (long idPublicacao, String imagem, String video, String documento, String comentario) {
+        super();
+        this.idPublicacao = idPublicacao;
+        this.
+    }
+
+    public long getIdPublicacao (){
+        return idPublicacao;
+    }
+    public void setIdPublicacao (long idPublicacao){
+        this.idPublicacao = idPublicacao;
     }
     public String getImagem (){
         return imagem;
