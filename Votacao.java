@@ -1,13 +1,18 @@
 package model;
 
 public class Votacao {
-    private int id_votacao;
+    private lema idVotacao;
 
-    public int getId_votacao() {
-        return id_votacao;
+    public Votacao (long idVotacao){
+        super();
+        this.idVotacao = 0;
     }
 
-    public void setId_votacao(int id_votacao) {
-        this.id_votacao = id_votacao;
+    public long getIdVotacao() {
+        return idVotacao;
+    }
+
+    public void setIdVotacao(long idVotacao) {
+        this.idVotacao = idVotacao;
     }
 }
