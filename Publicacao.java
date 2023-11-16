@@ -19,9 +19,12 @@ public class Publicacao {
     public Publicacao (long idPublicacao, String imagem, String video, String documento, String comentario) {
         super();
         this.idPublicacao = idPublicacao;
-        this.
+        this.imagem = imagem;
+        this.video = video;
+        this.documento = documento;
+        this.comentario = comentario;
     }
-
+    
     public long getIdPublicacao (){
         return idPublicacao;
     }
