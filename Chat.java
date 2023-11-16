@@ -1,13 +1,17 @@
 package model;
-
 public class Chat {
-    private int id_chat;
+    private long idChat;
 
-    public int getId_chat() {
-        return id_chat;
+    public Chat(long idchat){
+    super();
+    this.Chat = 0;
+}
+
+    public long getIdChat() {
+        return idChat;
     }
 
-    public void setId_chat(int id_chat) {
-        this.id_chat = id_chat;
+    public void setIdChat(long idChat) {
+        this.idChat = idChat;
     }
 }
