@@ -1,16 +1,32 @@
 package model;
 
 public class Estudante {
-    private int id_estudante;
+    private long idEstudante;
     private String email;
     private String nome;
-    private String senha_estudante;
+    private String senhaEstudante;
+
+public Estudante( long idEstudante, String email, String nome, String senhaEstudante ){
+    super();
+    this.idEstudante = idEstudante;
+    this.email = email;
+    this.nome = nome;
+    this.senhaEstudante = senhaEstudante;
+}
+ public Estudante {
+    super();
+    this.idEstudante = 0;
+    this.email = " ";
+    this.nome = " ";
+    this.senhaEstudante = " ";
+ }
+
     
-    public int getId_estudante() {
-        return id_estudante;
+    public long getIdEstudante() {
+        return idEstudante;
     }
-    public void setId_estudante(int id_estudante) {
-        this.id_estudante = id_estudante;
+    public void setIdEstudante(long idEstudante) {
+        this.idEstudante = idEstudante;
     }
         public String getEmail() {
         return email;
@@ -26,10 +42,10 @@ public class Estudante {
         this.nome = nome;
     }
 
-    public String getSenha_estudante() {
-        return senha_estudante;
+    public String getSenhaEstudante() {
+        return senhaEstudante;
     }
-    public void setSenha_estudante(String senha_estudante) {
-        this.senha_estudante = senha_estudante;
+    public void setSenhaEstudante(String senhaEstudante) {
+        this.senhaEstudante = senhaEstudante;
     }
 }
