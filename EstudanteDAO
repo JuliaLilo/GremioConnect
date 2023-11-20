@@ -1,0 +1,23 @@
+package DAO;
+
+ import model.Estudante;
+ import persistencia.Conexao;
+ import java.util.Scanner;
+
+public class EstudanteDAO {
+
+    Scanner teclado = new Scanner (System.in);
+    
+    private Conexao conexao;
+
+    public EstudanteDAO() {
+        conexao = new Conexao(" ", "3306", "localhost", "alunoinfo", "Projeto_integrador_JA");
+    }
+
+    public void cadastrarEstudante(Estudante estudante){
+        conexao.abrirConexao();
+        
+
+
+   }
+}
