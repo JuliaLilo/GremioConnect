@@ -9,7 +9,7 @@ public class Eleicao {
     public Eleicao (){
         super();
         this.idEleicao = 0;
-        this.data = 00/00/0000;
+        this.data = new Date();
     }
 
     public Eleicao (long idEleicao, Date data){
