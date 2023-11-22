@@ -5,7 +5,7 @@ public class Comentario {
 
     public Comentario (){
         super();
-        this.idComentario = " ";
+        this.idComentario = 0;
     }
 
     public Comentario (long idComentario){

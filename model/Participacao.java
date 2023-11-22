@@ -10,7 +10,7 @@ public class Participacao {
 
     public Participacao (long idParticipacao){
         super();
-        this.idParticipacao = idParticipacao
+        this.idParticipacao = idParticipacao;
     }
 
     public long getIdParticipacao() {

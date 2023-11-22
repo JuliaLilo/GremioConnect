@@ -2,10 +2,14 @@ package model;
 public class Chat {
     private long idChat;
 
-    public Chat(long idchat){
+    public Chat(long idChat){
     super();
-    this.Chat = 0;
+    this.idChat = idChat;
 }
+    public Chat(){
+    super();
+    this.idChat = 0;
+    }
 
     public long getIdChat() {
         return idChat;
