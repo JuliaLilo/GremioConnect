@@ -2,16 +2,13 @@ package DAO;
 
  import model.Estudante;
  import persistencia.Conexao;
- import java.util.Scanner;
 
 public class EstudanteDAO {
-
-    Scanner teclado = new Scanner (System.in);
     
     private Conexao conexao;
 
     public EstudanteDAO() {
-        conexao = new Conexao(" ", "3306", "localhost", "alunoinfo", "Projeto_integrador_JA");
+        conexao = new Conexao("192.168.1.103 ", "3306", "root", "Br@ncaraposa2006", "Projeto_integrador_JA");
     }
 
     public void cadastrarEstudante(Estudante estudante){
