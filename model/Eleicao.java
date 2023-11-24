@@ -5,6 +5,7 @@ import java.util.Date;
 public class Eleicao {
     private long idEleicao;
     private Date data;
+    private Chapa chapa;
 
     public Eleicao (){
         super();
