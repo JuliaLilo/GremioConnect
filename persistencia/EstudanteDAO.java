@@ -1,20 +1,46 @@
-package DAO;
+package persistencia;
 
- import model.Estudante;
- import persistencia.Conexao;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import model.Estudante;
 
 public class EstudanteDAO {
-    
-    private Conexao conexao;
 
-    public EstudanteDAO() {
-        conexao = new Conexao("192.168.1.103 ", "3306", "root", "Br@ncaraposa2006", "Projeto_integrador_JA");
+    private DataSource dataSource;
+    
+    public EstudanteDAO (DataSource dataSource){
+        this.dataSource = dataSource;
     }
 
-    public void cadastrarEstudante(Estudante estudante){
-        conexao.abrirConexao();
-        
+   public ArrayList <Estudante> readAll (){
+        try{
+            this.dataSource.getConnection();
+            String SQL = "SELECT * FROM estudante";
+            PreparedStatement ps = this.dataSource.getConnection().prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
 
+            ArrayList <Estudante> lista = new ArrayList <Estudante>();
 
-   }
+            while(rs.next()){
+                Estudante est = new Estudante();
+                est.setIdEstudante(rs.getLong("id"));
+                est.setEmail(rs.getString("email"));
+                est.setNome(rs.getString("nome"));
+                est.setSenhaEstudante(rs.getString("senha"));
+                lista.add(est);
+            }
+            ps.close();
+            return lista;
+        }
+        catch(SQLException ex){
+            System.err.println("Erro ao recuperar " +ex.getMessage());
+        }
+        catch (Exception ex){
+            System.err.println("Erro geral " +ex.getMessage());
+        }
+        return null;
+   } 
+    
 }
