@@ -4,43 +4,114 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import model.Estudante;
 
 public class EstudanteDAO {
 
-    private DataSource dataSource;
-    
-    public EstudanteDAO (DataSource dataSource){
-        this.dataSource = dataSource;
+    private ConexaoMysql conexao;
+
+    public EstudanteDAO() {
+        this.conexao = new ConexaoMysql("localhost", "3306", "root", "alunoinfo", "Projeto_integrador_JA;");
     }
 
-   public ArrayList <Estudante> readAll (){
+    public void adicionar(Estudante estudante){
+        this.conexao.abrirConexao();
+        String sql = "INSERT INTO estudante VALUES (null, ?, ?, ?);";
         try{
-            this.dataSource.getConnection();
-            String SQL = "SELECT * FROM estudante";
-            PreparedStatement ps = this.dataSource.getConnection().prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement st = conexao.getConexao().prepareStatement(sql);
+            st.setString(1, estudante.getEmail());
+            st.setString(2, estudante.getNome());
+            st.setString(3, estudante.getSenhaEstudante());
+            st.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.conexao.fecharConexao();
+        }
+    }
 
-            ArrayList <Estudante> lista = new ArrayList <Estudante>();
+    public void editar(Estudante estudante) {
+        this.conexao.abrirConexao();
 
-            while(rs.next()){
-                Estudante est = new Estudante();
-                est.setIdEstudante(rs.getLong("id"));
-                est.setEmail(rs.getString("email"));
-                est.setNome(rs.getString("nome"));
-                est.setSenhaEstudante(rs.getString("senha"));
-                lista.add(est);
+        String sql = "UPDATE estudante SET email=?, nome=?, senha=? WHERE id_estudante=?;";
+        try{
+            PreparedStatement st = conexao.getConexao().prepareStatement(sql);
+            st.setString(1, estudante.getEmail());
+            st.setString(2, estudante.getNome());
+            st.setString(3, estudante.getSenhaEstudante());
+            st.setLong(4,estudante.getIdEstudante());
+            st.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.conexao.fecharConexao();
+        }
+    }
+
+    public void excluir(long idEstudante) {
+        this.conexao.abrirConexao();
+
+        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        try{
+            PreparedStatement st = conexao.getConexao().prepareStatement(sql);
+            st.setLong(1, idEstudante);
+            st.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.conexao.fecharConexao();
+        }
+    }
+
+    public Estudante buscarPorId(long idEstudante) {
+        this.conexao.abrirConexao();
+        Estudante estudante = null;
+
+        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        try{
+            PreparedStatement st = conexao.getConexao().prepareStatement(sql);
+            st.setLong(1,idEstudante);
+            ResultSet rs = st.executeQuery();
+
+            if(rs.next()) {
+                estudante = new Estudante();
+                estudante.setIdEstudante(rs.getLong("id_estudante"));
+                estudante.setEmail(rs.getString("email_institucional"));
+                estudante.setNome(rs.getString("nome"));
+                estudante.setSenhaEstudante(rs.getString("senha_estudante0"));
             }
-            ps.close();
-            return lista;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.conexao.fecharConexao();
         }
-        catch(SQLException ex){
-            System.err.println("Erro ao recuperar " +ex.getMessage());
+        return estudante;
+    }
+
+    public List<Estudante> buscarTodos() {
+        this.conexao.abrirConexao();
+
+        List<Estudante> listEstudantes = new ArrayList();
+
+        String sql = "SELECT * FROM estudante;";
+        try {
+            PreparedStatement st = conexao.getConexao().prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+             while (rs.next()) {
+                Estudante estudante = new Estudante();
+                estudante.setIdEstudante(rs.getLong("id_estudante"));
+                estudante.setEmail(rs.getString("email_institucional"));
+                estudante.setNome(rs.getString("nome"));
+                estudante.setSenhaEstudante(rs.getString("senha_estudante0"));
+                listEstudantes.add(estudante);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.conexao.fecharConexao();
         }
-        catch (Exception ex){
-            System.err.println("Erro geral " +ex.getMessage());
-        }
-        return null;
-   } 
-    
+        return listEstudantes;
+    }
 }
