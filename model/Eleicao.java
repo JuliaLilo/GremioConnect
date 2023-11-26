@@ -11,12 +11,14 @@ public class Eleicao {
         super();
         this.idEleicao = 0;
         this.data = new Date();
+        this.chapa = new Chapa();
     }
 
-    public Eleicao (long idEleicao, Date data){
+    public Eleicao (long idEleicao, Date data, Chapa chapa){
         super();
         this.idEleicao = idEleicao;
         this.data = data;
+        this.chapa = chapa;
     }
     
     public long getIdEleicao() {
@@ -32,4 +34,18 @@ public class Eleicao {
     public void setData(Date data) {
         this.data = data;
     }
+
+    public Chapa getChapa() {
+        return chapa;
+    }
+
+    public void setChapa(Chapa chapa){
+        this.chapa = chapa;
+    }
+
+    @Override
+    public String toString() {
+        return idEleicao+ ", " +data+ ", " +chapa; 
+    }
 }
+
