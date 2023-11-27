@@ -80,7 +80,7 @@ public class EstudanteDAO {
                 estudante.setIdEstudante(rs.getLong("id_estudante"));
                 estudante.setEmail(rs.getString("email_institucional"));
                 estudante.setNome(rs.getString("nome"));
-                estudante.setSenhaEstudante(rs.getString("senha_estudante0"));
+                estudante.setSenhaEstudante(rs.getString("senha_estudante"));
             }
         } catch(SQLException e) {
             e.printStackTrace();

@@ -2,14 +2,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Chapa;
 
 public class Publicacao {
     private long idPublicacao;
     private String imagem;
     private String video;
     private String documento;
+    private Chapa chapa;
     private List<Comentario> listComentario;
-    private List<Chapa> listChapa;
 
     public Publicacao (){
         super();
@@ -18,18 +19,18 @@ public class Publicacao {
         this.video = " ";
         this.documento = " ";
         this.listComentario = new ArrayList<>();
-        this.listChapa = new ArrayList<>();
+        this.chapa = new Chapa();
         }
 
     public Publicacao (long idPublicacao, String imagem, String video, String documento, List<Comentario> 
-    listComentario, List<Chapa> listChapa) {
+    listComentario, Chapa chapa) {
         super();
         this.idPublicacao = idPublicacao;
         this.imagem = imagem;
         this.video = video;
         this.documento = documento;
         this.listComentario = listComentario;
-        this.listChapa = listChapa;
+        this.chapa = chapa;
     }
 
     public long getIdPublicacao (){
@@ -72,16 +73,16 @@ public class Publicacao {
         this.listComentario = listComentario;
     }
 
-    public List<Chapa> getListChapa(){
-        return listChapa;
+    public Chapa getChapa() {
+        return chapa;
     }
 
-    public void setListChapa (List<Chapa> listChapa){
-        this.listChapa = listChapa;
+    public void setChapa(Chapa chapa){
+        this.chapa = chapa;
     }
 
     @Override
     public String toString(){
-        return idPublicacao+ ", " +imagem+ ", " +video+ ", " +documento+ ", " +listComentario+ ", " +listChapa;
+        return idPublicacao+ ", " +imagem+ ", " +video+ ", " +documento+ ", " +listComentario+ ", " +chapa;
     }
 }

@@ -8,20 +8,20 @@ public class Estudante {
     private String email;
     private String nome;
     private String senhaEstudante;
-    private Comentario comentario;
+    private List<Comentario> listComentario;
     private List<Chapa> listChapa;
     private List<Chat> listChat;
     private List<Votacao> listVotacao;
     private List<Participacao> listPart;
 
     public Estudante( long idEstudante, String email, String nome, String senhaEstudante, 
-    Comentario comentario, List<Chapa> listChapa, List<Chat> listChat, List<Votacao> listVotacao, List<Participacao> listPart){
+    List<Comentario>listComentario, List<Chapa> listChapa, List<Chat> listChat, List<Votacao> listVotacao, List<Participacao> listPart){
         super();
         this.idEstudante = idEstudante;
         this.email = email;
         this.nome = nome;
         this.senhaEstudante = senhaEstudante;
-        this.comentario = comentario;
+        this.listComentario = listComentario;
         this.listChapa = listChapa;
         this.listChat = listChat;
         this.listVotacao = listVotacao;
@@ -33,7 +33,7 @@ public class Estudante {
         this.email = " ";
         this.nome = " ";
         this.senhaEstudante = " ";
-        this.comentario = new Comentario();
+        this.listComentario = new ArrayList<>();
         this.listChapa = new ArrayList<>();
         this.listChat = new ArrayList<>();
         this.listVotacao = new ArrayList<>();
@@ -71,12 +71,12 @@ public class Estudante {
         this.senhaEstudante = senhaEstudante;  
     }
 
-    public Comentario getComentario(){
-        return comentario;
+     public List<Comentario> getListComentario() {
+        return listComentario
     }
 
-    public void setComentario (Comentario comentario){
-        this.comentario = comentario;
+    public void setListComentario (List<Comentario> listComentario){
+        this.listComentario= listComentario;
     }
 
       public List<Chapa> getListChapa() {
@@ -114,6 +114,6 @@ public class Estudante {
     @Override
     public String toString() {
         return idEstudante+ ", " +senhaEstudante+ ", " +email+ ", " +nome+ ", " +listChat+ ", " +listPart+ 
-         ", " +listVotacao+ ", " +listChapa+ ", " +comentario;
+         ", " +listVotacao+ ", " +listChapa+ ", " +listComentario;
     }
 }
