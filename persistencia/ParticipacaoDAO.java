@@ -17,7 +17,7 @@ public class ParticipacaoDAO {
 
     public void adicionar(Participacao participacao){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?, ?, ?, ?);";
+        String sql = "INSERT INTO estudante VALUES (null, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, (participacao.getEstudante()).getIdEstudante());
