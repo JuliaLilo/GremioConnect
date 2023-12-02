@@ -71,7 +71,7 @@ public class ParticipacaoDAO {
     public List<Participacao> buscarTodos() {
         this.conexao.abrirConexao();
 
-        List<Partcipacao> listPartcipacao = new ArrayList();
+        List<Partcipacao> listPartcipacoes = new ArrayList();
 
         String sql = "SELECT * FROM estudante;";
         try {
@@ -80,13 +80,13 @@ public class ParticipacaoDAO {
              while (rs.next()) {
                 Partcipacao participacao = new Participacao();
                 participacao.setIdParticipacao(rs.getLong("id_participacao"));
-                listPartcipacao.add(partcipacao);
+                listPartcipacoes.add(partcipacao);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
             this.conexao.fecharConexao();
         }
-        return listParticipacao;
+        return listParticipacoes;
     }
 }
