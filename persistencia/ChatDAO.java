@@ -18,7 +18,7 @@ public class ChatDAO {
 
     public void adicionar(Chat chat){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?, ?);";
+        String sql = "INSERT INTO chat VALUES (null, ?, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, chat.getChapa().getIdChapa());
@@ -35,7 +35,7 @@ public class ChatDAO {
     public void excluir(long idChat) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM chat WHERE id_chat;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idChat);
@@ -51,7 +51,7 @@ public class ChatDAO {
         this.conexao.abrirConexao();
         Chat chat = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM chat WHERE id_chat=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idChat);
@@ -74,7 +74,7 @@ public class ChatDAO {
 
         List<Chat> listChats = new ArrayList();
 
-        String sql = "SELECT * FROM estudante;";
+        String sql = "SELECT * FROM chat;";
         try {
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             ResultSet rs = st.executeQuery();

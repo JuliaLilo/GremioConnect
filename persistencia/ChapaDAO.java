@@ -17,7 +17,7 @@ public class ChapaDAO {
 
     public void adicionar(Chapa chapa){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?, ?, ?, ?);";
+        String sql = "INSERT INTO chapa VALUES (null, ?, ?, ?, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setString(1, chapa.getSenhaChapa());
@@ -36,7 +36,7 @@ public class ChapaDAO {
     public void excluir(long idChapa) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM chapa WHERE id_chapa;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idChapa);
@@ -52,7 +52,7 @@ public class ChapaDAO {
         this.conexao.abrirConexao();
         Chapa chapa = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM chapa WHERE id_chapa=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idChapa);

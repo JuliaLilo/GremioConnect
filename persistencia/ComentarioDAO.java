@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Chat;
 import model.Comentario;
 
 public class ComentarioDAO {
@@ -19,7 +17,7 @@ public class ComentarioDAO {
 
     public void adicionar(Comentario comentario){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?, ?);";
+        String sql = "INSERT INTO comentario VALUES (null, ?, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, comentario.getEstudante().getIdEstudante());
@@ -36,7 +34,7 @@ public class ComentarioDAO {
     public void excluir(long idComentario) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM comentario WHERE id_comentario;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idComentario);
@@ -52,7 +50,7 @@ public class ComentarioDAO {
         this.conexao.abrirConexao();
         Comentario comentario = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM comentario WHERE id_comentario=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idComentario);
@@ -75,7 +73,7 @@ public class ComentarioDAO {
 
         List<Comentario> listComentarios = new ArrayList();
 
-        String sql = "SELECT * FROM estudante;";
+        String sql = "SELECT * FROM comentario;";
         try {
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
