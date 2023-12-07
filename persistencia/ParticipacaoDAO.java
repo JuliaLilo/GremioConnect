@@ -17,7 +17,7 @@ public class ParticipacaoDAO {
 
     public void adicionar(Participacao participacao){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?);";
+        String sql = "INSERT INTO participacao VALUES (null, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, (participacao.getEstudante()).getIdEstudante());
@@ -33,7 +33,7 @@ public class ParticipacaoDAO {
     public void excluir(long idParticipacao) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM participacao WHERE id_participacao;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idParticipacao);
@@ -45,19 +45,19 @@ public class ParticipacaoDAO {
         }
     }
 
-    public Chapa buscarPorId(long idParticipacao) {
+    public Participacao buscarPorId(long idParticipacao) {
         this.conexao.abrirConexao();
-        Chapa chapa = null;
+        Participacao participacao = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM participacao WHERE id_participacao=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idParticipacao);
             ResultSet rs = st.executeQuery();
 
             if(rs.next()) {
-                partcipacao = new Participacao();
-                partcipacao.setIdParticipacao(rs.getLong("id_participacao"));
+                participacao = new Participacao();
+                participacao.setIdParticipacao(rs.getLong("id_participacao"));
                 
             }
         } catch(SQLException e) {
@@ -65,22 +65,22 @@ public class ParticipacaoDAO {
         }finally {
             this.conexao.fecharConexao();
         }
-        return partcipacao;
+        return participacao;
     }
 
     public List<Participacao> buscarTodos() {
         this.conexao.abrirConexao();
 
-        List<Partcipacao> listPartcipacoes = new ArrayList();
+        List<Participacao> listParticipacoes = new ArrayList();
 
-        String sql = "SELECT * FROM estudante;";
+        String sql = "SELECT * FROM participacao;";
         try {
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
              while (rs.next()) {
-                Partcipacao participacao = new Participacao();
+                Participacao participacao = new Participacao();
                 participacao.setIdParticipacao(rs.getLong("id_participacao"));
-                listPartcipacoes.add(partcipacao);
+                listParticipacoes.add(participacao);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -72,7 +72,7 @@ public class Estudante {
     }
 
      public List<Comentario> getListComentario() {
-        return listComentario
+        return listComentario;
     }
 
     public void setListComentario (List<Comentario> listComentario){

@@ -17,7 +17,7 @@ public class VotacaoDAO {
 
     public void adicionar(Votacao votacao){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?);";
+        String sql = "INSERT INTO votacao VALUES (null, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, (votacao.getEstudante()).getIdEstudante());
@@ -33,7 +33,7 @@ public class VotacaoDAO {
     public void excluir(long idVotacao) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM votacao WHERE id_votacao;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idVotacao);
@@ -45,11 +45,11 @@ public class VotacaoDAO {
         }
     }
 
-    public Chapa buscarPorId(long idVotacao) {
+    public Votacao buscarPorId(long idVotacao) {
         this.conexao.abrirConexao();
         Votacao votacao = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM votacao WHERE id_votacao=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idVotacao);
@@ -73,7 +73,7 @@ public class VotacaoDAO {
 
         List<Votacao> listVotacoes = new ArrayList();
 
-        String sql = "SELECT * FROM estudante;";
+        String sql = "SELECT * FROM votacao;";
         try {
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             ResultSet rs = st.executeQuery();

@@ -17,13 +17,13 @@ public class PublicacaoDAO {
 
     public void adicionar(Publicacao publicacao){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?, ?, ?, ?);";
+        String sql = "INSERT INTO publicacao VALUES (null, ?, ?, ?, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setString(1, publicacao.getImagem());
             st.setString(2, publicacao.getVideo());
             st.setString(3, publicacao.getDocumento());
-            st.setLong(4, (publicacao.getEstudante()).getIdEstudante());
+            st.setLong(4, (publicacao.getChapa()).getIdChapa());
             st.executeUpdate();
         }
         catch (SQLException e) {
@@ -36,7 +36,7 @@ public class PublicacaoDAO {
     public void excluir(long idPublicacao) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM publicacao WHERE id_publicacao;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idPublicacao);
@@ -48,11 +48,11 @@ public class PublicacaoDAO {
         }
     }
 
-    public Chapa buscarPorId(long idPublicacao) {
+    public Publicacao buscarPorId(long idPublicacao) {
         this.conexao.abrirConexao();
-        Chapa chapa = null;
+        Publicacao publicacao = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM publicacao WHERE id_publicacao=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idPublicacao);
@@ -61,9 +61,9 @@ public class PublicacaoDAO {
             if(rs.next()) {
                 publicacao = new Publicacao();
                 publicacao.setIdPublicacao(rs.getLong("id_publicacao"));
-                chapa.setimagem(rs.getString("imagem"));
-                chapa.setVideo(rs.getString("video"));
-                chapa.setDocumento(rs.getString("documento"));
+                publicacao.setImagem(rs.getString("imagem"));
+                publicacao.setVideo(rs.getString("video"));
+                publicacao.setDocumento(rs.getString("documento"));
                 
             }
         } catch(SQLException e) {
@@ -79,7 +79,7 @@ public class PublicacaoDAO {
 
         List<Publicacao> listPublicacoes = new ArrayList();
 
-        String sql = "SELECT * FROM estudante;";
+        String sql = "SELECT * FROM publicacao;";
         try {
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             ResultSet rs = st.executeQuery();

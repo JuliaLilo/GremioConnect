@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Chat;
 import model.Eleicao;
 import java.sql.Date;
 
@@ -20,7 +18,7 @@ public class EleicaoDAO {
 
     public void adicionar(Eleicao eleicao){
         this.conexao.abrirConexao();
-        String sql = "INSERT INTO estudante VALUES (null, ?, ?);";
+        String sql = "INSERT INTO eleicao VALUES (null, ?, ?);";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setDate(1, (Date) eleicao.getData());
@@ -37,7 +35,7 @@ public class EleicaoDAO {
     public void excluir(long idEleicao) {
         this.conexao.abrirConexao();
 
-        String sql = "DELETE FROM estudante WHERE id_estudante;";
+        String sql = "DELETE FROM eleicao WHERE id_eleicao;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1, idEleicao);
@@ -53,7 +51,7 @@ public class EleicaoDAO {
         this.conexao.abrirConexao();
         Eleicao eleicao = null;
 
-        String sql = "SELECT * FROM estudante WHERE id_estudante=?;";
+        String sql = "SELECT * FROM eleicao WHERE id_eleicao=?;";
         try{
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             st.setLong(1,idEleicao);
@@ -76,7 +74,7 @@ public class EleicaoDAO {
 
         List<Eleicao> listEleicoes = new ArrayList();
 
-        String sql = "SELECT * FROM estudante;";
+        String sql = "SELECT * FROM eleicao;";
         try {
             PreparedStatement st = conexao.getConexao().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
