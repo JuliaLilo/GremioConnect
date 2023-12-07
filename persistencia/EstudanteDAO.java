@@ -12,7 +12,7 @@ public class EstudanteDAO {
     private ConexaoMysql conexao;
 
     public EstudanteDAO() {
-        this.conexao = new ConexaoMysql("localhost", "3306", "root", "alunoinfo", "Projeto_integrador_JA;");
+        this.conexao = new ConexaoMysql("localhost", "3306", "root", "Br@ncaraposa2006", "Projeto_integrador_JA");
     }
 
     public void adicionar(Estudante estudante){
@@ -65,6 +65,36 @@ public class EstudanteDAO {
         }
     }
 
+
+
+public Estudante buscarPorEmailSenha(String email, String senha){
+    Estudante estudante = null;
+    try {
+        this.conexao.abrirConexao();
+        String sql = "SELECT * FROM estudante WHERE email=? AND senha=?";
+        PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+        statement.setString(1, email);
+        statement.setString(2, senha);
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next() == true){
+            estudante = new Estudante();
+            estudante.setIdEstudante(rs.getLong("id_estudante"));
+            estudante.setNome(rs.getString("nome"));
+            estudante.setEmail(rs.getString("email_institucional"));
+            estudante.setSenhaEstudante(rs.getString("senha_estudante"));
+        }
+    } catch (SQLException e){
+        e.printStackTrace();
+    } 
+    return estudante;
+}
+
+
+
+
+
+
     public Estudante buscarPorId(long idEstudante) {
         this.conexao.abrirConexao();
         Estudante estudante = null;
@@ -114,4 +144,6 @@ public class EstudanteDAO {
         }
         return listEstudantes;
     }
+
+    
 }

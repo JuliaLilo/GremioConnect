@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Estudante {
-    private long idEstudante;
+    private Long idEstudante;
     private String email;
     private String nome;
     private String senhaEstudante;
@@ -14,7 +14,7 @@ public class Estudante {
     private List<Votacao> listVotacao;
     private List<Participacao> listPart;
 
-    public Estudante( long idEstudante, String email, String nome, String senhaEstudante, 
+    public Estudante( Long idEstudante, String email, String nome, String senhaEstudante, 
     List<Comentario>listComentario, List<Chapa> listChapa, List<Chat> listChat, List<Votacao> listVotacao, List<Participacao> listPart){
         super();
         this.idEstudante = idEstudante;
@@ -29,7 +29,7 @@ public class Estudante {
 }
     public Estudante () {
         super();
-        this.idEstudante = 0;
+        this.idEstudante = (long) 0;
         this.email = " ";
         this.nome = " ";
         this.senhaEstudante = " ";
@@ -44,7 +44,7 @@ public class Estudante {
         return idEstudante;
     }
 
-    public void setIdEstudante(long idEstudante) {
+    public void setIdEstudante(Long idEstudante) {
         this.idEstudante = idEstudante;
     }
 
