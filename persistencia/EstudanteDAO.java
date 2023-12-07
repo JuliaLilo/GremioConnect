@@ -65,17 +65,15 @@ public class EstudanteDAO {
         }
     }
 
-
-
-public Estudante buscarPorEmailSenha(String email, String senha){
-    Estudante estudante = null;
-    try {
-        this.conexao.abrirConexao();
-        String sql = "SELECT * FROM estudante WHERE email=? AND senha=?";
-        PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
-        statement.setString(1, email);
-        statement.setString(2, senha);
-        ResultSet rs = statement.executeQuery();
+    public Estudante buscarPorEmailSenha(String email, String senha){
+        Estudante estudante = null;
+            try {
+             this.conexao.abrirConexao();
+            String sql = "SELECT * FROM estudante WHERE email_institucional=? AND senha_estudante=?";
+            PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+            statement.setString(1, email);
+            statement.setString(2, senha);
+            ResultSet rs = statement.executeQuery();
 
         if (rs.next() == true){
             estudante = new Estudante();
@@ -89,11 +87,6 @@ public Estudante buscarPorEmailSenha(String email, String senha){
     } 
     return estudante;
 }
-
-
-
-
-
 
     public Estudante buscarPorId(long idEstudante) {
         this.conexao.abrirConexao();

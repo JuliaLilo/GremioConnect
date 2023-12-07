@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Chapa;
+import model.Estudante;
 
 public class ChapaDAO {
     
@@ -73,6 +74,29 @@ public class ChapaDAO {
         }
         return chapa;
     }
+
+    public Chapa buscarPorNomeSenha(String nome, String senha){
+        Chapa chapa = null;
+            try {
+             this.conexao.abrirConexao();
+            String sql = "SELECT * FROM estudante WHERE nome_chapa=? AND senha_chapa=?";
+            PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+            statement.setString(1, nome);
+            statement.setString(2, senha);
+            ResultSet rs = statement.executeQuery();
+
+        if (rs.next() == true){
+            chapa = new Chapa();
+            chapa.setIdChapa(rs.getLong("id_chapa"));
+            chapa.setNomeChapa(rs.getString("nome_chapa"));
+            chapa.setLema(rs.getString("lema"));
+            chapa.setSenhaChapa(rs.getString("senha_chapa"));
+        }
+    } catch (SQLException e){
+        e.printStackTrace();
+    } 
+    return chapa;
+}
 
     public List<Chapa> buscarTodos() {
         this.conexao.abrirConexao();
